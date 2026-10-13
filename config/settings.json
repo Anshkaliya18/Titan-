@@ -1,0 +1,99 @@
+{
+    "general": {
+        "assistant_name": "Jarvis",
+        "debug": false
+    },
+    "browser": {
+        "default_search_engine": "https://www.google.com/search?q={query}"
+    },
+    "filesystem": {
+        "workspace": "jarvis_workspace"
+    },
+    "safety": {
+        "require_confirmation_for_shutdown": true,
+        "require_confirmation_for_restart": true,
+        "require_confirmation_for_delete": true,
+        "confirmation_timeout_seconds": 60
+    },
+    "history": {
+        "max_entries": 250
+    },
+    "intent_detection": {
+        "ml_enabled": true,
+        "ml_confidence_threshold": 0.5,
+        "ml_dangerous_confidence_threshold": 0.85
+    },
+    "spell_correction": {
+        "enabled": true,
+        "confidence_threshold": 0.75,
+        "dangerous_confidence_threshold": 0.9,
+        "context_aware": true
+    },
+    "natural_language": {
+        "enabled": true,
+        "confidence_threshold": 0.75,
+        "dangerous_confidence_threshold": 0.9
+    },
+    "context": {
+        "enabled": true,
+        "max_items": 10,
+        "max_age_commands": 10
+    },
+    "llm": {
+        "enabled": false,
+        "provider": "gemini",
+        "model": "gemini-3.5-flash-lite",
+        "timeout_seconds": 10,
+        "max_input_length": 2000,
+        "max_output_length": 2000,
+        "confidence_threshold": 0.8,
+        "dangerous_confidence_threshold": 0.95
+    },
+    "voice": {
+        "enabled": false,
+        "provider": "windows",
+        "language": "en-US",
+        "listen_timeout_seconds": 5,
+        "phrase_time_limit_seconds": 10,
+        "device": null
+    },
+    "tts": {
+        "enabled": true,
+        "provider": "local",
+        "voice": null,
+        "rate": 175,
+        "volume": 1.0
+    },
+    "wake_word": {
+        "enabled": true,
+        "provider": "local",
+        "phrase": "hey jarvis",
+        "sensitivity": 0.5,
+        "sample_rate": 16000,
+        "channels": 1
+    },
+    "task_planning": {
+        "enabled": false,
+        "max_steps": 10,
+        "max_plan_input_length": 2000,
+        "allow_llm_planning": false,
+        "require_confirmation_for_plan": false
+    },
+    "automation": {
+        "enabled": false,
+        "max_workflows": 50,
+        "max_steps_per_workflow": 10,
+        "max_workflow_name_length": 100,
+        "max_description_length": 500,
+        "max_runs_per_hour": 10,
+        "scheduler_enabled": false,
+        "skip_missed_runs": true
+    },
+    "applications": {
+        "discovery_enabled": true,
+        "cache_enabled": true,
+        "max_results": 25,
+        "fuzzy_matching_enabled": true,
+        "fuzzy_threshold": 0.9
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "commands": {
+        "open": {
+            "description": "Open an application or file",
+            "category": "applications"
+        },
+        "search": {
+            "description": "Search for files or web content",
+            "category": "browser"
+        },
+        "volume": {
+            "description": "Control system volume",
+            "category": "windows"
+        }
+    }
+}

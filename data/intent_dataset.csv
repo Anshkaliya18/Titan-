@@ -1,0 +1,261 @@
+text,intent
+open chrome,OPEN_APPLICATION
+launch chrome,OPEN_APPLICATION
+start google chrome,OPEN_APPLICATION
+please open chrome,OPEN_APPLICATION
+can you launch chrome,OPEN_APPLICATION
+open firefox,OPEN_APPLICATION
+launch firefox,OPEN_APPLICATION
+start firefox,OPEN_APPLICATION
+open notepad,OPEN_APPLICATION
+launch notepad,OPEN_APPLICATION
+open calculator,OPEN_APPLICATION
+launch calculator,OPEN_APPLICATION
+open calc,OPEN_APPLICATION
+open file explorer,OPEN_APPLICATION
+open explorer,OPEN_APPLICATION
+launch file explorer,OPEN_APPLICATION
+open google chrome,OPEN_APPLICATION
+open microsoft edge,OPEN_APPLICATION
+open edge,OPEN_APPLICATION
+launch google chrome,OPEN_APPLICATION
+open command prompt,OPEN_APPLICATION
+open cmd,OPEN_APPLICATION
+open powershell,OPEN_APPLICATION
+open terminal,OPEN_APPLICATION
+open vscode,OPEN_APPLICATION
+open code,OPEN_APPLICATION
+open word,OPEN_APPLICATION
+open excel,OPEN_APPLICATION
+open outlook,OPEN_APPLICATION
+open spotify,OPEN_APPLICATION
+open discord,OPEN_APPLICATION
+open steam,OPEN_APPLICATION
+please open chrome please,OPEN_APPLICATION
+open chrome please,OPEN_APPLICATION
+can you open chrome,OPEN_APPLICATION
+I want to open chrome,OPEN_APPLICATION
+I would like to open chrome,OPEN_APPLICATION
+please launch chrome,OPEN_APPLICATION
+please start chrome,OPEN_APPLICATION
+start chrome please,OPEN_APPLICATION
+launch chrome please,OPEN_APPLICATION
+could you open chrome,OPEN_APPLICATION
+could you launch chrome,OPEN_APPLICATION
+close chrome,CLOSE_APPLICATION
+close firefox,CLOSE_APPLICATION
+close notepad,CLOSE_APPLICATION
+close calculator,CLOSE_APPLICATION
+close file explorer,CLOSE_APPLICATION
+close google chrome,CLOSE_APPLICATION
+close microsoft edge,CLOSE_APPLICATION
+close edge,CLOSE_APPLICATION
+quit chrome,CLOSE_APPLICATION
+quit firefox,CLOSE_APPLICATION
+exit chrome,CLOSE_APPLICATION
+exit firefox,CLOSE_APPLICATION
+please close chrome,CLOSE_APPLICATION
+please close firefox,CLOSE_APPLICATION
+close chrome please,CLOSE_APPLICATION
+lock computer,LOCK_COMPUTER
+lock my computer,LOCK_COMPUTER
+please lock computer,LOCK_COMPUTER
+please lock my computer,LOCK_COMPUTER
+lock the computer,LOCK_COMPUTER
+lock it,LOCK_COMPUTER
+lock machine,LOCK_COMPUTER
+shutdown computer,SHUTDOWN_COMPUTER
+shutdown my computer,SHUTDOWN_COMPUTER
+shut down computer,SHUTDOWN_COMPUTER
+shut down my computer,SHUTDOWN_COMPUTER
+shut down the computer,SHUTDOWN_COMPUTER
+power off computer,SHUTDOWN_COMPUTER
+power off my computer,SHUTDOWN_COMPUTER
+please shut down computer,SHUTDOWN_COMPUTER
+please shutdown computer,SHUTDOWN_COMPUTER
+power off,SHUTDOWN_COMPUTER
+please power off,SHUTDOWN_COMPUTER
+turn off computer,SHUTDOWN_COMPUTER
+turn off the computer,SHUTDOWN_COMPUTER
+restart computer,RESTART_COMPUTER
+restart my computer,RESTART_COMPUTER
+reboot computer,RESTART_COMPUTER
+reboot my computer,RESTART_COMPUTER
+please restart computer,RESTART_COMPUTER
+please restart my computer,RESTART_COMPUTER
+please reboot computer,RESTART_COMPUTER
+reboot please,RESTART_COMPUTER
+restart please,RESTART_COMPUTER
+create folder,CREATE_FOLDER
+create folder test,CREATE_FOLDER
+make folder,CREATE_FOLDER
+make folder test,CREATE_FOLDER
+please create folder,CREATE_FOLDER
+please create folder test,CREATE_FOLDER
+make a folder,CREATE_FOLDER
+please make a folder,CREATE_FOLDER
+create a folder,CREATE_FOLDER
+new folder,CREATE_FOLDER
+delete file,DELETE_FILE
+delete file test.txt,DELETE_FILE
+delete file report.pdf,DELETE_FILE
+delete file test,DELETE_FILE
+remove file,DELETE_FILE
+remove file test.txt,DELETE_FILE
+please delete file,DELETE_FILE
+please delete file test.txt,DELETE_FILE
+please remove file,DELETE_FILE
+delete the file,DELETE_FILE
+remove the file,DELETE_FILE
+delete this file,DELETE_FILE
+open file,OPEN_FILE
+open file test.txt,OPEN_FILE
+open file report.pdf,OPEN_FILE
+open report.pdf,OPEN_FILE
+open file test,OPEN_FILE
+please open file,OPEN_FILE
+please open file test.txt,OPEN_FILE
+open the file,OPEN_FILE
+open this file,OPEN_FILE
+search file,SEARCH_FILE
+search file test.txt,SEARCH_FILE
+search file report,SEARCH_FILE
+find file,SEARCH_FILE
+find file test.txt,SEARCH_FILE
+please search file,SEARCH_FILE
+please find file,SEARCH_FILE
+search for file,SEARCH_FILE
+find the file,SEARCH_FILE
+locate file,SEARCH_FILE
+open browser,OPEN_BROWSER
+open default browser,OPEN_BROWSER
+launch browser,OPEN_BROWSER
+launch my browser,OPEN_BROWSER
+open default browser please,OPEN_BROWSER
+open my browser,OPEN_BROWSER
+search web python tutorials,SEARCH_WEB
+search web python,SEARCH_WEB
+search web python tutorials please,SEARCH_WEB
+search the web for python tutorials,SEARCH_WEB
+search the web for python,SEARCH_WEB
+search the web for python tutorials please,SEARCH_WEB
+search web cats and dogs,SEARCH_WEB
+search web cats,SEARCH_WEB
+google python tutorials,SEARCH_WEB
+google python,SEARCH_WEB
+google python tutorials please,SEARCH_WEB
+search for python tutorials,SEARCH_WEB
+search for python,SEARCH_WEB
+search python tutorials,SEARCH_WEB
+search python,SEARCH_WEB
+search for cats and dogs,SEARCH_WEB
+search cats and dogs,SEARCH_WEB
+search web for cats,SEARCH_WEB
+search the web for cats,SEARCH_WEB
+please search web for python,SEARCH_WEB
+can you search web for python,SEARCH_WEB
+search web for python please,SEARCH_WEB
+open url,OPEN_URL
+open url https://github.com,OPEN_URL
+open url https://example.com,OPEN_URL
+open https://github.com,OPEN_URL
+open https://example.com,OPEN_URL
+open website https://github.com,OPEN_URL
+open website https://example.com,OPEN_URL
+please open url https://github.com,OPEN_URL
+please open https://github.com,OPEN_URL
+go to https://github.com,OPEN_URL
+go to https://example.com,OPEN_URL
+open https://google.com,OPEN_URL
+open https://stackoverflow.com,OPEN_URL
+help,HELP
+show help,HELP
+what can you do,HELP
+how can you help me,HELP
+what can you do for me,HELP
+how can you help,HELP
+please help,HELP
+help me,HELP
+show me help,HELP
+what commands,HELP
+how does this work,HELP
+commands,LIST_COMMANDS
+list commands,LIST_COMMANDS
+show commands,LIST_COMMANDS
+show me commands,LIST_COMMANDS
+what commands are available,LIST_COMMANDS
+available commands,LIST_COMMANDS
+show me the commands,LIST_COMMANDS
+list all commands,LIST_COMMANDS
+what can I say,LIST_COMMANDS
+history,HISTORY
+show history,HISTORY
+show history please,HISTORY
+show command history,HISTORY
+show command history please,HISTORY
+command history,HISTORY
+recent commands,HISTORY
+recent commands please,HISTORY
+show recent commands,HISTORY
+show me history,HISTORY
+clear history,CLEAR_HISTORY
+find installed apps,FIND_APPLICATION
+find installed applications,FIND_APPLICATION
+find discord,FIND_APPLICATION
+find applications containing studio,FIND_APPLICATION
+what apps do i have,FIND_APPLICATION
+refresh applications,REFRESH_APPLICATIONS
+refresh apps,REFRESH_APPLICATIONS
+refresh app list,REFRESH_APPLICATIONS
+refresh installed applications,REFRESH_APPLICATIONS
+rebuild application list,REFRESH_APPLICATIONS
+clear history please,CLEAR_HISTORY
+delete history,CLEAR_HISTORY
+delete history please,CLEAR_HISTORY
+remove history,CLEAR_HISTORY
+remove history please,CLEAR_HISTORY
+delete command history,CLEAR_HISTORY
+remove command history,CLEAR_HISTORY
+clear the history,CLEAR_HISTORY
+wipe history,CLEAR_HISTORY
+enable startup,ENABLE_STARTUP
+enable startup please,ENABLE_STARTUP
+start with windows,ENABLE_STARTUP
+enable windows startup,ENABLE_STARTUP
+please enable startup,ENABLE_STARTUP
+make jarvis start with windows,ENABLE_STARTUP
+start jarvis with windows,ENABLE_STARTUP
+disable startup,DISABLE_STARTUP
+disable startup please,DISABLE_STARTUP
+stop startup,DISABLE_STARTUP
+disable windows startup,DISABLE_STARTUP
+please disable startup,DISABLE_STARTUP
+stop windows startup,DISABLE_STARTUP
+disable autostart,DISABLE_STARTUP
+turn off startup,DISABLE_STARTUP
+startup status,STARTUP_STATUS
+startup status please,STARTUP_STATUS
+check startup,STARTUP_STATUS
+check startup please,STARTUP_STATUS
+is startup enabled,STARTUP_STATUS
+is startup enabled please,STARTUP_STATUS
+am I starting with windows,STARTUP_STATUS
+
+hello,UNKNOWN
+hi,UNKNOWN
+how are you,UNKNOWN
+what is the weather,UNKNOWN
+tell me a joke,UNKNOWN
+play some music,UNKNOWN
+do something,UNKNOWN
+blah blah,UNKNOWN
+this is random,UNKNOWN
+random text,UNKNOWN
+what time is it,UNKNOWN
+tell me about yourself,UNKNOWN
+good morning,UNKNOWN
+good night,UNKNOWN
+thanks,UNKNOWN
+thank you,UNKNOWN
+bye,UNKNOWN
+goodbye,UNKNOWN

@@ -1,0 +1,11 @@
+# Development / test dependencies (Step 23 — Phase 10)
+# Not required to run Jarvis — install with:
+#   python -m pip install -r requirements-dev.txt
+-r requirements.txt
+pytest>=8
+
+# Packaging dependency (build machine only, intentionally not a
+# runtime dependency). Install separately when you need to build the
+# Windows executable:
+#   python -m pip install "pyinstaller>=6"
+# Then run: python build.py

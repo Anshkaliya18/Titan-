@@ -1,0 +1,10 @@
+# Optional microphone input for local wake-word frames. Typed Jarvis use does
+# not require these packages; Windows SAPI transcription has no model download.
+SpeechRecognition[audio]>=3.10
+
+# Windows-native SAPI recognition bridge for CPython on Windows.
+pywin32>=306; platform_system == "Windows"
+
+# Optional local wake-word detection. The pretrained ONNX model is installed
+# separately with scripts/setup_wake_word.py; nothing downloads at startup.
+openwakeword==0.6.0

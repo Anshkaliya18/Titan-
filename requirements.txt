@@ -1,0 +1,27 @@
+# Core project runtime dependencies; optional provider requests stay disabled
+# unless explicitly configured by the user.
+nltk>=3.8
+
+# ML intent classification (Step 25)
+scikit-learn>=1.6
+joblib>=1.4
+
+# Load optional local API credentials from the project .env file.
+python-dotenv>=1.0.1
+
+# Optional local Windows SAPI text-to-speech (loaded only when enabled).
+pyttsx3>=2.90
+
+# Resolve trusted Windows Start Menu shortcuts for installed application launch.
+pywin32>=306; platform_system == "Windows"
+
+# Optional LLM provider: Google Gemini.
+google-genai>=2.0,<3
+
+# NLTK data required at runtime / for model training (run once in a
+# development environment):
+#   python -m nltk.downloader punkt_tab words
+#
+# Packaged builds bundle the required punkt_tab tokenizer data — see
+# jarvis.spec and README.md. Nothing is downloaded at application
+# startup.

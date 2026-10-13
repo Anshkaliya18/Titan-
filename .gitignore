@@ -1,0 +1,34 @@
+# Python bytecode / caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Build output produced by build.py / PyInstaller (Phase 29).
+# jarvis.spec itself is a SOURCE file and is intentionally NOT ignored.
+build/
+dist/
+
+# Runtime data created in source mode (never commit it)
+logs/
+jarvis_workspace/
+data/workflows.json
+data/.workflows-*.tmp
+
+# Local credentials and private key material
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+secrets/
+credentials/
+
+# Downloaded local wake-word models
+models/wake_word/*
+*.exe
+
+# Local test artifacts and optional downloaded speech assets
+/work/
+/external/whisper.cpp/
+models/whisper/*.bin
