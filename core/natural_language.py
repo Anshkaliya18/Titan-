@@ -1,7 +1,7 @@
 """
 Natural Language Command Layer (Step 27)
 
-Deterministic natural-language interpretation for Jarvis.
+Deterministic natural-language interpretation for TITAN.
 
 Converts natural-language requests into structured command interpretations
 that feed into the existing hybrid intent detection pipeline.

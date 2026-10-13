@@ -1,8 +1,8 @@
 """
 Session State Module
 
-In-memory, deterministic short-term state for the current Jarvis
-running session. Cleared automatically when Jarvis exits — nothing
+In-memory, deterministic short-term state for the current TITAN
+running session. Cleared automatically when TITAN exits — nothing
 is ever persisted to disk.
 
 This is NOT long-term memory:
@@ -151,11 +151,11 @@ def classify_confirmation_input(text: str) -> str | None:
 
 class SessionState:
     """
-    In-memory state for the current Jarvis session.
+    In-memory state for the current TITAN session.
 
     The internal state is only reachable through explicit methods;
     snapshot() returns copies so callers cannot accidentally mutate
-    the live state. Jarvis is a single-threaded CLI, so no locking
+    the live state. TITAN is a single-threaded CLI, so no locking
     is used — and none is needed while access stays on one thread.
     """
 

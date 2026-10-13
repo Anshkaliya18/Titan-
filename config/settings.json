@@ -1,13 +1,13 @@
 {
     "general": {
-        "assistant_name": "Jarvis",
+        "assistant_name": "TITAN",
         "debug": false
     },
     "browser": {
         "default_search_engine": "https://www.google.com/search?q={query}"
     },
     "filesystem": {
-        "workspace": "jarvis_workspace"
+        "workspace": "TITAN_workspace"
     },
     "safety": {
         "require_confirmation_for_shutdown": true,
@@ -67,7 +67,7 @@
     "wake_word": {
         "enabled": true,
         "provider": "local",
-        "phrase": "hey jarvis",
+        "phrase": "hey TITAN",
         "sensitivity": 0.5,
         "sample_rate": 16000,
         "channels": 1

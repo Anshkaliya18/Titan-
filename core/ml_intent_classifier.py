@@ -35,7 +35,7 @@ MODEL_DIR_NAME = "models"
 MODEL_FILENAME = "intent_classifier.joblib"
 # Dataset is a read-only application resource, so it is anchored to the
 # bundle directory (utils.paths.bundle_dir) — never to the current working
-# directory. This keeps training working when Jarvis is launched from any
+# directory. This keeps training working when TITAN is launched from any
 # directory, in both source and packaged builds.
 DATASET_PATH = paths.bundle_dir() / "data" / "intent_dataset.csv"
 
@@ -62,7 +62,7 @@ def _ensure_real_ml_stack() -> None:
     any sklearn import this removes ONLY objects whose type name is
     MissingOptionalDependency. Real modules — e.g. when something else
     already imported the real scipy — are never touched. NLTK modules
-    that already took their guarded fallbacks keep them; Jarvis never
+    that already took their guarded fallbacks keep them; TITAN never
     calls the NLTK helpers that would need the real packages.
     """
     try:

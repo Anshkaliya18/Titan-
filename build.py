@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Repeatable Windows build for Jarvis (Step 23 — Phase 11).
+Repeatable Windows build for TITAN (Step 23 — Phase 11).
 
 Usage:
     python build.py               clean, test, build, verify
@@ -13,9 +13,9 @@ Steps (in order):
                      dist/) — nothing else is ever deleted
     3. Test          run the complete pytest suite; a failing test
                      stops the build
-    4. Build         run PyInstaller with jarvis.spec
+    4. Build         run PyInstaller with TITAN.spec
     5. Verify        check the executable and its bundled resources,
-                     then run `Jarvis.exe --version`
+                     then run `TITAN.exe --version`
     6. Report        print the output location, size, and what to do
                      next — or a clear failure message with the exact
                      command to run
@@ -34,13 +34,13 @@ import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-SPEC_FILE = ROOT / "jarvis.spec"
+SPEC_FILE = ROOT / "TITAN.spec"
 BUILD_DIR = ROOT / "build"
 DIST_DIR = ROOT / "dist"
-APP_DIR = DIST_DIR / "Jarvis"
-EXE_FILE = APP_DIR / "Jarvis.exe"
+APP_DIR = DIST_DIR / "TITAN"
+EXE_FILE = APP_DIR / "TITAN.exe"
 
-# Resources jarvis.spec bundles; verified after the build.
+# Resources TITAN.spec bundles; verified after the build.
 REQUIRED_RESOURCES = (
     "_internal/config/settings.json",
     "_internal/config/commands.json",
@@ -171,7 +171,7 @@ def step_verify() -> list[str]:
         problems.append(
             f"--version exited with code {proc.returncode}: {output[-500:]}"
         )
-    elif "Jarvis" not in output:
+    elif "TITAN" not in output:
         problems.append(f"--version printed an unexpected value: {output[:200]}")
     else:
         print(f"  {output.splitlines()[0]}")
@@ -192,13 +192,13 @@ def step_report(elapsed: float) -> None:
     print("Next steps:")
     print(f'  Run packaged : "{EXE_FILE}"')
     print("  Validate     : see docs/VALIDATION.md (repeatable checklist)")
-    print("  Cleanup      : deleting the dist/Jarvis folder removes the app")
-    print("                 (user data in %APPDATA%\\Jarvis is kept)")
+    print("  Cleanup      : deleting the dist/TITAN folder removes the app")
+    print("                 (user data in %APPDATA%\\TITAN is kept)")
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        description="Build the Jarvis Windows executable."
+        description="Build the TITAN Windows executable."
     )
     parser.add_argument(
         "--skip-tests",

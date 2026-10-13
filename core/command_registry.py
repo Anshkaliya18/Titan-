@@ -1,7 +1,7 @@
 """
 Command Registry
 ----------------
-Central source of truth for supported Jarvis commands.
+Central source of truth for supported TITAN commands.
 
 It defines:
 - intent names
@@ -102,19 +102,19 @@ _COMMANDS: dict[str, CommandDefinition] = {
     "ENABLE_STARTUP": CommandDefinition(
         intent="ENABLE_STARTUP",
         aliases=("enable startup", "start with windows", "enable windows startup"),
-        description="Start Jarvis automatically when Windows starts.",
+        description="Start TITAN automatically when Windows starts.",
         category="system",
     ),
     "DISABLE_STARTUP": CommandDefinition(
         intent="DISABLE_STARTUP",
         aliases=("disable startup", "stop startup", "disable windows startup"),
-        description="Stop Jarvis from starting with Windows.",
+        description="Stop TITAN from starting with Windows.",
         category="system",
     ),
     "STARTUP_STATUS": CommandDefinition(
         intent="STARTUP_STATUS",
         aliases=("startup status", "check startup", "is startup enabled"),
-        description="Check whether Jarvis starts with Windows.",
+        description="Check whether TITAN starts with Windows.",
         category="system",
     ),
     "CREATE_FOLDER": CommandDefinition(
@@ -168,7 +168,7 @@ _COMMANDS: dict[str, CommandDefinition] = {
     "LIST_COMMANDS": CommandDefinition(
         intent="LIST_COMMANDS",
         aliases=("commands", "list commands", "show commands", "available commands"),
-        description="List available Jarvis commands.",
+        description="List available TITAN commands.",
         category="help",
     ),
     "HISTORY": CommandDefinition(

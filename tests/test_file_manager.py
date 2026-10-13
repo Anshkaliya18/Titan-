@@ -65,7 +65,7 @@ class TestSafeDirectories(unittest.TestCase):
     """Test the safe directory configuration."""
 
     def test_returns_expected_directories(self):
-        """Should include Desktop, Documents, Downloads, Jarvis workspace."""
+        """Should include Desktop, Documents, Downloads, TITAN workspace."""
         dirs = get_safe_directories()
         names = [d.name for d in dirs]
         self.assertIn("Desktop", names)

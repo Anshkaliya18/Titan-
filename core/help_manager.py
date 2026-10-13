@@ -50,7 +50,7 @@ def get_help() -> dict:
     """
     commands = get_all_commands()
 
-    lines = ["Jarvis can help you with:", ""]
+    lines = ["TITAN can help you with:", ""]
 
     for category_key, category_label in _CATEGORY_ORDER:
         category_commands = [

@@ -21,7 +21,7 @@ packages installed::
 
 Measured on this project (Step 22 baseline): with those packages
 installed, ``import nltk`` costs ~1.39 s (scipy.stats ~0.6 s, plus the
-pandas/pyarrow/requests chains it drags in). Jarvis never uses NLTK's
+pandas/pyarrow/requests chains it drags in). TITAN never uses NLTK's
 collocation statistics or transition parsers — only
 ``nltk.tokenize.word_tokenize``.
 
@@ -54,11 +54,11 @@ from typing import Callable, List
 
 from utils.paths import bundle_dir, is_frozen
 
-# Optional NLTK dependencies Jarvis never uses. Installed as stand-ins
+# Optional NLTK dependencies TITAN never uses. Installed as stand-ins
 # before `nltk` is imported (root packages plus the exact submodule
 # paths NLTK imports by name, so no real package is ever touched).
 #
-# NOTE (Step 25): Jarvis now uses scikit-learn for the ML intent
+# NOTE (Step 25): TITAN now uses scikit-learn for the ML intent
 # classifier, which needs the REAL scipy/sklearn. The shims below are
 # still installed first so NLTK takes its fast guarded fallback branch
 # (Step 22 startup optimization) instead of loading sklearn.svm itself.
@@ -66,7 +66,7 @@ from utils.paths import bundle_dir, is_frozen
 # ONLY these shim objects from sys.modules (verified by type name —
 # real modules are never removed) and then imports the real packages.
 # NLTK modules already imported keep their guarded fallbacks, which
-# Jarvis never calls, so this is safe. See _ensure_real_ml_stack().
+# TITAN never calls, so this is safe. See _ensure_real_ml_stack().
 OPTIONAL_DEPENDENCY_SHIMS: tuple = (
     "scipy",            # nltk.metrics.association, nltk.metrics.scores
     "scipy.stats",
@@ -88,7 +88,7 @@ class MissingOptionalDependency(types.ModuleType):
 
     def __getattr__(self, name: str):
         raise ImportError(
-            f"{self.__name__} is unavailable (Jarvis import shim)"
+            f"{self.__name__} is unavailable (TITAN import shim)"
         )
 
 
@@ -119,7 +119,7 @@ def _purge(names: List[str]) -> None:
 def register_bundled_nltk_data() -> bool:
     """Point NLTK at the ``nltk_data`` folder bundled with the build.
 
-    Packaged mode only (Step 23, Phase 9): jarvis.spec collects the
+    Packaged mode only (Step 23, Phase 9): TITAN.spec collects the
     tokenizers/punkt_tab resource into the application bundle, and
     this adds that folder to NLTK's search path so tokenization works
     offline on a machine that has never run ``nltk.downloader``.

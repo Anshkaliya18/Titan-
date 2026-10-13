@@ -1,7 +1,7 @@
 """
 Centralized Logging Module
 
-Single source of logging configuration for Jarvis.
+Single source of logging configuration for TITAN.
 
 Design:
     configure_logging()     attach handlers (file always, console in debug mode)
@@ -9,11 +9,11 @@ Design:
     reset_logging()         remove handlers we attached (used by tests)
 
 Destination:
-    data root/jarvis.log   rotating file, always written (DEBUG and up)
+    data root/TITAN.log   rotating file, always written (DEBUG and up)
     console                only when general.debug is enabled in configuration
 
     The data root comes from utils.paths (Step 23): <project>/logs in
-    source mode, %APPDATA%\\Jarvis\\logs when packaged. It is anchored to
+    source mode, %APPDATA%\\TITAN\\logs when packaged. It is anchored to
     the installation, never to the current working directory, so a
     launch from a shortcut, another directory, the Startup folder, or
     Task Scheduler writes to the same stable, writable location.
@@ -37,11 +37,11 @@ from utils import paths
 
 # Default log location: writable data root + logs/ (Step 23 — stable
 # regardless of the current working directory; in source mode this is
-# <project>/logs, when packaged it is %APPDATA%\Jarvis\logs).
+# <project>/logs, when packaged it is %APPDATA%\TITAN\logs).
 DEFAULT_LOG_DIR = paths.log_dir()
-LOG_FILENAME = "jarvis.log"
+LOG_FILENAME = "TITAN.log"
 
-# Rotation: jarvis.log plus up to three rotated backups, 5 MB each
+# Rotation: TITAN.log plus up to three rotated backups, 5 MB each
 MAX_BYTES = 5 * 1024 * 1024
 BACKUP_COUNT = 3
 
@@ -192,7 +192,7 @@ def configure_logging(
     """
     Configure logging destinations. Safe to call repeatedly.
 
-    - Attaches one RotatingFileHandler writing to <log_dir>/jarvis.log
+    - Attaches one RotatingFileHandler writing to <log_dir>/TITAN.log
       (or log_dir when given, which is used by tests; the default comes
       from utils.paths — see the module docstring).
     - Attaches a console StreamHandler only when debug mode is enabled,
@@ -274,7 +274,7 @@ def get_logger(name: str) -> logging.Logger:
     return logging.getLogger(name)
 
 
-def setup_logger(name: str = "jarvis", level: int = logging.INFO) -> logging.Logger:
+def setup_logger(name: str = "TITAN", level: int = logging.INFO) -> logging.Logger:
     """
     Backward-compatible alias for get_logger().
 

@@ -1,7 +1,7 @@
 """Download openWakeWord's pretrained Hey Jarvis model for offline use.
 
 Run this explicit setup step once after installing requirements-voice.txt.
-The wake detector never downloads model files during Jarvis startup.
+The wake detector never downloads model files during TITAN startup.
 """
 
 from pathlib import Path

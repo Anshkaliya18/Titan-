@@ -1,5 +1,5 @@
 """
-Jarvis - Main Entry Point
+TITAN - Main Entry Point
 
 Coordinates the complete input processing pipeline:
     get_input() → split_commands() → [per command:]
@@ -10,7 +10,7 @@ Coordinates the complete input processing pipeline:
 Multi-command handling (Step 19):
 - One input may contain several commands separated by deterministic
   separators ("and", "then", "after that", "next", ";", "," — but
-  only when the text after the separator starts a Jarvis command).
+  only when the text after the separator starts a TITAN command).
 - A single command produces one segment and is processed exactly as
   before — the multi-command layer is transparent for normal input.
 - Segments are pre-validated as a whole chain, then executed
@@ -20,7 +20,7 @@ Multi-command handling (Step 19):
 
 Session state (Step 18):
 - One SessionState object records the latest state of the current
-  runtime session (in-memory only, gone when Jarvis exits).
+  runtime session (in-memory only, gone when TITAN exits).
 - Dangerous commands (shutdown/restart/delete) are NOT executed on
   the turn they are typed. They are parked as a pending confirmation
   in session state and the user answers on the next turn:
@@ -32,7 +32,7 @@ Session state (Step 18):
 
 Command history (Step 20):
 - One CommandHistory object records the commands processed during
-  this session (bounded, memory-only, gone when Jarvis exits).
+  this session (bounded, memory-only, gone when TITAN exits).
 - Every processed command — success, failure, or parked awaiting
   confirmation — is recorded as it happens; the parked entry is
   resolved to its real outcome when the user answers.
@@ -54,6 +54,7 @@ Error handling:
 """
 
 import re
+import sys
 
 # Lightweight command-line flags run first, before logging and every
 # manager is initialized (Step 23, Phase 21). When a flag is handled
@@ -121,7 +122,7 @@ configure_logging()
 
 # Configuration via the Configuration Manager (single source of truth)
 DEBUG = get_value("general", "debug", False)
-ASSISTANT_NAME = get_value("general", "assistant_name", "Jarvis")
+ASSISTANT_NAME = get_value("general", "assistant_name", "TITAN")
 
 logger = get_logger("main")
 _natural_language = NaturalLanguageInterpreter()
@@ -144,11 +145,11 @@ _CANCEL_MESSAGES = {
 }
 
 # One session state object for the whole runtime. Memory only — it is
-# never written to disk and disappears when Jarvis exits.
+# never written to disk and disappears when TITAN exits.
 session = SessionState()
 
 # One CommandHistory object for the whole session (Step 20). Memory
-# only — it disappears when Jarvis exits. Pipeline code reads it
+# only — it disappears when TITAN exits. Pipeline code reads it
 # through get_command_history() so the Executor's history routing and
 # every recording site always see the same instance (tests swap it
 # with set_command_history()).
@@ -156,10 +157,11 @@ history = get_command_history()
 task_planner = TaskPlanner(context_manager=session.context)
 workflow_manager = WorkflowManager(task_planner=task_planner)
 _pending_task_confirmation: tuple[str, int] | None = None
+_gui_response_callback = None
 
 
 def main():
-    """Main loop for the Jarvis assistant."""
+    """Main loop for the TITAN assistant."""
     from core.version import VERSION
     from utils.paths import is_frozen
 
@@ -201,7 +203,7 @@ def main():
         logger.info(f"{ASSISTANT_NAME} session ended")
 
 
-def _process_once():
+def _process_once(raw_input: str | None = None):
     """
     Process a single user turn through the complete pipeline.
 
@@ -216,7 +218,10 @@ def _process_once():
     """
     global _pending_task_confirmation
     # Step 1: Get raw input from user
-    raw_input = get_input()
+    if raw_input is None:
+        raw_input = get_input()
+    else:
+        raw_input = raw_input.strip()
 
     # Record the turn's input (memory only — never persisted)
     session.set_last_input(raw_input)
@@ -932,7 +937,10 @@ def _respond_with_result(result: dict) -> None:
 
 def _display_response(response: str) -> None:
     """Keep printed output authoritative and optionally speak that text."""
-    print(f"\n{response}")
+    if _gui_response_callback is None:
+        print(f"\n{response}")
+    else:
+        _gui_response_callback(response)
     try:
         _tts_manager.speak(response)
     except Exception as exc:
@@ -940,5 +948,33 @@ def _display_response(response: str) -> None:
         logger.warning("TTS response failed (%s)", type(exc).__name__)
 
 
+def process_gui_text(text: str, response_callback) -> bool:
+    """Process one GUI turn through the same parser, validator and executor.
+
+    The GUI owns a single serialized worker. This temporary response sink
+    keeps display output out of stdout while preserving Response Manager and
+    TTS behavior. Returns whether a confirmation is still pending.
+    """
+    global _gui_response_callback
+    if not isinstance(text, str) or not text.strip():
+        return session.get_pending_confirmation() is not None
+    _gui_response_callback = response_callback
+    try:
+        _process_once(text)
+        return session.get_pending_confirmation() is not None
+    finally:
+        _gui_response_callback = None
+
+
 if __name__ == "__main__":
-    main()
+    if "--gui" in sys.argv[1:]:
+        # Keep the UI bound to this exact core session instead of importing
+        # the entry point a second time under its module name.
+        sys.modules.setdefault("main", sys.modules[__name__])
+        from gui.app import run_gui
+
+        run_gui()
+    else:
+        if "--cli" in sys.argv[1:]:
+            sys.argv.remove("--cli")
+        main()

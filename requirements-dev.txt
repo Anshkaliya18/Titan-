@@ -1,5 +1,5 @@
 # Development / test dependencies (Step 23 — Phase 10)
-# Not required to run Jarvis — install with:
+# Not required to run TITAN — install with:
 #   python -m pip install -r requirements-dev.txt
 -r requirements.txt
 pytest>=8

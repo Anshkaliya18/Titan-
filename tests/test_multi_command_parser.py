@@ -17,7 +17,7 @@ import unittest
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from core.command_registry import get_all_commands
-from core.exceptions import JarvisError, MultiCommandError
+from core.exceptions import TITANError, MultiCommandError
 from core.multi_command_parser import (
     COMMAND_START_WORDS,
     COMMAND_TOO_LONG_MESSAGE,
@@ -125,7 +125,7 @@ class TestPunctuationSeparators(unittest.TestCase):
 
 
 class TestNoFalseSplits(unittest.TestCase):
-    """A separator only splits when a Jarvis command follows (PART 4)."""
+    """A separator only splits when a TITAN command follows (PART 4)."""
 
     def test_search_query_with_and_stays_whole(self):
         self.assertEqual(
@@ -315,8 +315,8 @@ class TestCommandLimits(unittest.TestCase):
         self.assertNotIn("Traceback", message)
         self.assertNotIn("File", message)
 
-    def test_multicommand_error_is_a_jarvis_error(self):
-        self.assertTrue(issubclass(MultiCommandError, JarvisError))
+    def test_multicommand_error_is_a_TITAN_error(self):
+        self.assertTrue(issubclass(MultiCommandError, TITANError))
 
     def test_single_segment_at_length_limit_is_allowed(self):
         # "open " is 5 characters → 5 + 495 = 500 exactly.

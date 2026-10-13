@@ -52,7 +52,7 @@ class GeminiProvider(LLMProvider):
                 response_json_schema=schema,
                 temperature=0,
                 max_output_tokens=max_output_tokens,
-                # One attempt avoids SDK retry bursts on quota errors. Jarvis
+                # One attempt avoids SDK retry bursts on quota errors. TITAN
                 # immediately falls back to its deterministic pipeline.
                 http_options=types.HttpOptions(
                     timeout=max(1, int(timeout * 1000)),

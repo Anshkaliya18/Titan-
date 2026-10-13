@@ -1,4 +1,4 @@
-"""Bounded, deterministic context for the current Jarvis session.
+"""Bounded, deterministic context for the current TITAN session.
 
 This module stores only typed entities from successful structured commands.
 It never executes commands, reads the filesystem, or persists context.

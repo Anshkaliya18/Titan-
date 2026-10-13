@@ -1,0 +1,4 @@
+# Optional Windows system tray integration for the Tkinter desktop UI.
+-r requirements.txt
+pystray>=0.19.5
+Pillow>=10.0

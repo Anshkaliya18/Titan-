@@ -47,7 +47,7 @@ nl = {
     "RESTART_COMPUTER": ["restart computer", "please restart the computer",
         "reboot my computer", "would you reboot the computer"],
     "ENABLE_STARTUP": ["enable startup", "please enable startup",
-        "start with windows", "make jarvis start with windows"],
+        "start with windows", "make TITAN start with windows"],
     "DISABLE_STARTUP": ["disable startup", "please disable startup",
         "stop windows startup", "disable autostart"],
     "STARTUP_STATUS": ["startup status", "check startup", "is startup enabled",

@@ -1,7 +1,7 @@
 """
 Custom Exceptions Module
 
-Lightweight exception hierarchy for Jarvis.
+Lightweight exception hierarchy for TITAN.
 
 These exceptions are reserved for genuinely exceptional conditions.
 Normal failures (unknown command, application not installed, file not
@@ -11,44 +11,44 @@ found, ...) stay structured results:
 
 Architecture:
     managers return structured results for expected failures
-    JarvisError and its subclasses describe unexpected failures
+    TITANError and its subclasses describe unexpected failures
     the Executor logs them and returns a safe user-facing result
 """
 
 
-class JarvisError(Exception):
-    """Base class for all Jarvis-specific exceptions."""
+class TITANError(Exception):
+    """Base class for all TITAN-specific exceptions."""
 
 
-class CommandError(JarvisError):
+class CommandError(TITANError):
     """A command could not be executed."""
 
 
-class ValidationError(JarvisError):
+class ValidationError(TITANError):
     """Command validation failed in an exceptional way."""
 
 
-class ApplicationError(JarvisError):
+class ApplicationError(TITANError):
     """An application operation failed unexpectedly."""
 
 
-class FileOperationError(JarvisError):
+class FileOperationError(TITANError):
     """A file operation failed unexpectedly."""
 
 
-class BrowserError(JarvisError):
+class BrowserError(TITANError):
     """A browser operation failed unexpectedly."""
 
 
-class SystemOperationError(JarvisError):
+class SystemOperationError(TITANError):
     """A system operation failed unexpectedly."""
 
 
-class ConfigurationError(JarvisError):
+class ConfigurationError(TITANError):
     """Configuration could not be read or written."""
 
 
-class MultiCommandError(JarvisError):
+class MultiCommandError(TITANError):
     """
     Multi-command input violated a safety limit.
 

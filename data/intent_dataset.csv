@@ -223,8 +223,8 @@ enable startup please,ENABLE_STARTUP
 start with windows,ENABLE_STARTUP
 enable windows startup,ENABLE_STARTUP
 please enable startup,ENABLE_STARTUP
-make jarvis start with windows,ENABLE_STARTUP
-start jarvis with windows,ENABLE_STARTUP
+make TITAN start with windows,ENABLE_STARTUP
+start TITAN with windows,ENABLE_STARTUP
 disable startup,DISABLE_STARTUP
 disable startup please,DISABLE_STARTUP
 stop startup,DISABLE_STARTUP

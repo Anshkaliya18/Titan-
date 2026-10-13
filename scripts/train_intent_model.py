@@ -98,7 +98,7 @@ def load_dataset(path: Path) -> tuple[list[str], list[str]]:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        description="Train the Jarvis ML intent classifier."
+        description="Train the TITAN ML intent classifier."
     )
     parser.add_argument("--no-save", action="store_true",
                         help="train and evaluate without saving the model")

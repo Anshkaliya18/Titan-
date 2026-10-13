@@ -212,7 +212,7 @@ class TestCommandPipelineMatrix(_ReleaseTestCase):
         self._buffer.seek(0)
         self._buffer.truncate(0)
         output = self._run_turn_real("help")
-        self.assertIn("Jarvis can help you with:", output)
+        self.assertIn("TITAN can help you with:", output)
 
     def test_list_commands(self):
         self._buffer.seek(0)

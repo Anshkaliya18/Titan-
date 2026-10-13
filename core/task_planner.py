@@ -1,6 +1,6 @@
 """Bounded structured task plans; this module never executes commands.
 
-Plans contain only validated Jarvis command dictionaries. Execution remains
+Plans contain only validated TITAN command dictionaries. Execution remains
 with ``core.multi_command_executor`` and the ordinary Executor boundary.
 """
 
@@ -154,7 +154,7 @@ class TaskPlanner:
 
     def _create_plan(self, request: str, *, preview: bool,
                      workflow_request: bool) -> TaskPlan:
-        """Deterministically parse a request into existing Jarvis commands."""
+        """Deterministically parse a request into existing TITAN commands."""
         config = _planning_config()
         if not config["enabled"] and not workflow_request:
             raise ValueError("Task planning is disabled.")
@@ -203,7 +203,7 @@ class TaskPlanner:
                 raise ValueError("I couldn't interpret one of the requested steps.") from None
             if not parsed.valid:
                 raise ValueError(
-                    f"Step {index} is not a valid Jarvis command: "
+                    f"Step {index} is not a valid TITAN command: "
                     f"{parsed.validation.get('message', 'invalid command')}"
                 )
             command = _canonical_command(parsed.command)

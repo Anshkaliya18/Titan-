@@ -13,7 +13,7 @@ def _settings(monkeypatch, **overrides):
         "wake_word": {
             "enabled": True,
             "provider": "local",
-            "phrase": "hey jarvis",
+            "phrase": "hey TITAN",
             "sensitivity": 0.5,
             "sample_rate": 16000,
             "channels": 1,
@@ -60,7 +60,7 @@ def test_defaults_are_safe_and_config_is_validated():
     assert DEFAULT_CONFIG["wake_word"] == {
         "enabled": False,
         "provider": "local",
-        "phrase": "hey jarvis",
+        "phrase": "hey TITAN",
         "sensitivity": 0.5,
         "sample_rate": 16000,
         "channels": 1,
@@ -69,7 +69,7 @@ def test_defaults_are_safe_and_config_is_validated():
         "wake_word": {"enabled": True, "phrase": "computer", "sensitivity": 2.0}
     }))
     assert invalid["wake_word"]["enabled"] is False
-    assert invalid["wake_word"]["phrase"] == "hey jarvis"
+    assert invalid["wake_word"]["phrase"] == "hey TITAN"
     malformed_number = _validate_and_fix(_deep_merge(DEFAULT_CONFIG, {
         "wake_word": {"enabled": True, "sensitivity": 1}
     }))
@@ -164,4 +164,4 @@ def test_wake_transcript_only_returns_text_after_existing_approval(monkeypatch, 
     output = capsys.readouterr().out
     assert "Wake detected." in output
     assert "You said: open chrome" in output
-    assert "hey jarvis" not in output.casefold()
+    assert "hey TITAN" not in output.casefold()

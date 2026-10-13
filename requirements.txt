@@ -23,5 +23,5 @@ google-genai>=2.0,<3
 #   python -m nltk.downloader punkt_tab words
 #
 # Packaged builds bundle the required punkt_tab tokenizer data — see
-# jarvis.spec and README.md. Nothing is downloaded at application
+# TITAN.spec and README.md. Nothing is downloaded at application
 # startup.

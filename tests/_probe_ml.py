@@ -105,7 +105,7 @@ tests = [
     'start with windows',
     'power off',
     'turn off computer',
-    'make jarvis start with windows',
+    'make TITAN start with windows',
 ]
 
 print('--- Predictions (confidence >= 0.50 and >= 0.85 shown) ---')

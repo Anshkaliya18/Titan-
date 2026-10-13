@@ -54,12 +54,12 @@ class WakeWordDetector:
             return WakeWordResult(False, error="VOICE_DISABLED")
 
         provider = get_value("wake_word", "provider", "local")
-        phrase = get_value("wake_word", "phrase", "hey jarvis")
+        phrase = get_value("wake_word", "phrase", "hey TITAN")
         sensitivity = get_value("wake_word", "sensitivity", 0.5)
         if (
             provider != "local"
             or not isinstance(phrase, str)
-            or " ".join(phrase.casefold().split()) != "hey jarvis"
+            or " ".join(phrase.casefold().split()) != "hey TITAN"
             or not isinstance(sensitivity, (int, float))
             or isinstance(sensitivity, bool)
             or not 0.1 <= sensitivity <= 0.95

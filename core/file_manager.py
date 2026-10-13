@@ -29,7 +29,7 @@ from utils.logger import get_logger
 
 logger = get_logger(__name__)
 
-# Root Jarvis owns: the project directory in source mode, the writable
+# Root TITAN owns: the project directory in source mode, the writable
 # per-user data root when packaged (Step 23). Anchored to this file —
 # never to the current working directory.
 PROJECT_ROOT = paths.data_root()
@@ -51,7 +51,7 @@ def _user_profile() -> Path:
 
 def get_safe_directories() -> list[Path]:
     """
-    Return the directories Jarvis is allowed to operate in.
+    Return the directories TITAN is allowed to operate in.
 
     Uses Windows environment variables (USERPROFILE) — no hardcoded
     usernames. Directories that do not exist are still returned;
@@ -87,12 +87,12 @@ def _workspace_subdir() -> str:
     """
     name = get_value("filesystem", "workspace")
     if not isinstance(name, str) or not name.strip():
-        return "jarvis_workspace"
+        return "TITAN_workspace"
     # Reject any path separators to keep this a single directory name
     name = name.strip()
     if "/" in name or "\\" in name or name in {".", ".."}:
         logger.warning(f"Invalid workspace name '{name}', using default")
-        return "jarvis_workspace"
+        return "TITAN_workspace"
     return name
 
 
@@ -249,7 +249,7 @@ def create_folder(name: str) -> dict[str, Any]:
         logger.warning(f"Blocked unsafe file path: {name}")
         return _result(
             False,
-            "Access denied: path is outside Jarvis safe directories.",
+            "Access denied: path is outside TITAN safe directories.",
             {},
         )
 
@@ -298,7 +298,7 @@ def open_file(path: str) -> dict[str, Any]:
         logger.warning(f"Blocked unsafe file path: {path}")
         return _result(
             False,
-            "Access denied: path is outside Jarvis safe directories.",
+            "Access denied: path is outside TITAN safe directories.",
             {},
         )
 
@@ -313,7 +313,7 @@ def open_file(path: str) -> dict[str, Any]:
         logger.warning(f"Blocked unsafe file path: {path}")
         return _result(
             False,
-            "Access denied: path is outside Jarvis safe directories.",
+            "Access denied: path is outside TITAN safe directories.",
             {},
         )
 
@@ -358,7 +358,7 @@ def delete_file(path: str, confirmed: bool = False) -> dict[str, Any]:
         logger.warning(f"Blocked unsafe file path: {path}")
         return _result(
             False,
-            "Access denied: path is outside Jarvis safe directories.",
+            "Access denied: path is outside TITAN safe directories.",
             {},
         )
 
@@ -370,7 +370,7 @@ def delete_file(path: str, confirmed: bool = False) -> dict[str, Any]:
         logger.warning(f"Blocked unsafe file path: {path}")
         return _result(
             False,
-            "Access denied: path is outside Jarvis safe directories.",
+            "Access denied: path is outside TITAN safe directories.",
             {},
         )
 

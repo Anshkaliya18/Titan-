@@ -1,4 +1,4 @@
-"""Output-only, local text-to-speech for final Jarvis responses."""
+"""Output-only, local text-to-speech for final TITAN responses."""
 
 import re
 from typing import Callable
@@ -100,3 +100,13 @@ class TTSManager:
                 "message": "Unable to speak response.",
                 "error": "TTS_UNAVAILABLE",
             }
+
+    def stop(self) -> None:
+        """Stop active local speech during orderly application shutdown."""
+        engine = self._engine
+        if engine is None:
+            return
+        try:
+            engine.stop()
+        except Exception as exc:
+            logger.warning("Local TTS shutdown failed (%s)", type(exc).__name__)

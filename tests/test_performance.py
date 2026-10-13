@@ -101,9 +101,9 @@ def _run_python(code: str, *args: str, timeout: float = 90.0) -> str:
     return proc.stdout
 
 
-# Snippet used by every subprocess that imports Jarvis: redirect the
+# Snippet used by every subprocess that imports TITAN: redirect the
 # session logger to a temporary directory first, so the real
-# logs/jarvis.log is never written during tests.
+# logs/TITAN.log is never written during tests.
 _TEMP_LOG_PRELUDE = (
     "import tempfile, pathlib, sys; "
     "sys.path.insert(0, {root!r}); "

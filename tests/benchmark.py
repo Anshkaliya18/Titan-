@@ -1,5 +1,5 @@
 """
-Jarvis Performance Benchmark (Step 22)
+TITAN Performance Benchmark (Step 22)
 
 A reproducible, side-effect-free benchmark for startup time and
 per-command processing latency. Nothing dangerous ever runs:
@@ -101,10 +101,10 @@ def _subprocess_output(code: str) -> str:
 
 
 def measure_startup(runs: int) -> dict:
-    """Measure bare interpreter start and Jarvis import+init."""
+    """Measure bare interpreter start and TITAN import+init."""
     bare = _subprocess_ms("pass", max(3, runs // 2))
-    jarvis = _subprocess_ms(
-        "import main  # noqa: F401  (full Jarvis import + initialization)",
+    TITAN = _subprocess_ms(
+        "import main  # noqa: F401  (full TITAN import + initialization)",
         runs,
     )
     import_memory = _subprocess_output(
@@ -112,7 +112,7 @@ def measure_startup(runs: int) -> dict:
         "cur, peak = tracemalloc.get_traced_memory(); "
         "print(f'{cur / 1048576:.2f} {peak / 1048576:.2f}')"
     )
-    return {"bare": bare, "jarvis": jarvis, "import_memory": import_memory}
+    return {"bare": bare, "TITAN": TITAN, "import_memory": import_memory}
 
 
 # ---------------------------------------------------------------------------
@@ -287,7 +287,7 @@ def _print_table(title: str, rows: list[tuple], decimals: int) -> None:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Jarvis performance benchmark")
+    parser = argparse.ArgumentParser(description="TITAN performance benchmark")
     parser.add_argument("--quick", action="store_true", help="fewer iterations")
     args = parser.parse_args()
 
@@ -295,7 +295,7 @@ def main() -> int:
     cmd_runs = 15 if args.quick else 60
     soak_commands = 300 if args.quick else 1000
 
-    print(f"Jarvis benchmark — Python {platform.python_version()} "
+    print(f"TITAN benchmark — Python {platform.python_version()} "
           f"on {platform.system()} {platform.machine()}")
     print(f"runs: startup={startup_runs}, commands={cmd_runs}, "
           f"memory soak={soak_commands}")
@@ -307,8 +307,8 @@ def main() -> int:
         [
             ("Bare python (reference)", statistics.median(startup["bare"]),
              min(startup["bare"]), max(startup["bare"])),
-            ("import main (Jarvis init)", statistics.median(startup["jarvis"]),
-             min(startup["jarvis"]), max(startup["jarvis"])),
+            ("import main (TITAN init)", statistics.median(startup["TITAN"]),
+             min(startup["TITAN"]), max(startup["TITAN"])),
         ],
         decimals=1,
     )

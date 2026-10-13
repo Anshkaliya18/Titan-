@@ -14,7 +14,7 @@ print("  is_absolute:", mlc_mod.DATASET_PATH.is_absolute())
 print("  exists from project dir:", mlc_mod.DATASET_PATH.exists())
 
 # Now test from a DIFFERENT working directory
-other = tempfile.mkdtemp(prefix="jarvis-cwd-")
+other = tempfile.mkdtemp(prefix="TITAN-cwd-")
 os.chdir(other)
 print("\nChanged CWD to:", other)
 print("DATASET_PATH from other dir exists:", mlc_mod.DATASET_PATH.exists())

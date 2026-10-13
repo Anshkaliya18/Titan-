@@ -1,13 +1,13 @@
 """
 Windows Startup Manager (Step 23 — Phases 13–15)
 
-Optional, user-level registration of Jarvis in Windows startup.
+Optional, user-level registration of TITAN in Windows startup.
 
 Mechanism (Phase 14) — one value in the per-user "Run" registry key:
 
     Key   : HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run
-    Name  : Jarvis
-    Data  : the resolved command that starts this Jarvis installation
+    Name  : TITAN
+    Data  : the resolved command that starts this TITAN installation
 
 Windows runs that value when the user logs on. That is the whole
 mechanism: no service, no driver, no scheduled task, no system-wide
@@ -48,7 +48,7 @@ from utils.paths import is_frozen
 logger = get_logger(__name__)
 
 # winreg exists on Windows only; a missing module is reported as an
-# unavailable feature instead of raising (Jarvis must run anywhere).
+# unavailable feature instead of raising (TITAN must run anywhere).
 try:
     import winreg
 except Exception:  # pragma: no cover - non-Windows environments
@@ -86,7 +86,7 @@ def _resolve_install_command() -> str:
     be supplied by user input.
 
     Returns:
-        str: Packaged mode -> '"C:\\...\\Jarvis.exe"'
+        str: Packaged mode -> '"C:\\...\\TITAN.exe"'
              Source mode   -> '"C:\\...\\python.exe" "C:\\...\\main.py"'
 
     Raises:
@@ -102,7 +102,7 @@ def _resolve_install_command() -> str:
     exe = raw_exe.resolve()
 
     # Never register a hidden console when a console Python exists
-    # alongside it: Jarvis is a CLI and must stay visible (Phase 19).
+    # alongside it: TITAN is a CLI and must stay visible (Phase 19).
     if exe.name.lower() == "pythonw.exe":
         console_exe = exe.with_name("python.exe")
         if console_exe.is_file():
@@ -120,7 +120,7 @@ def _resolve_install_command() -> str:
     # Source mode: the interpreter runs this project's entry point.
     entry_point = Path(__file__).resolve().parent.parent / "main.py"
     if not entry_point.is_file():
-        raise ValueError("Jarvis entry point not found")
+        raise ValueError("TITAN entry point not found")
     return f"{_quote(exe)} {_quote(entry_point)}"
 
 
@@ -151,7 +151,7 @@ def _target_path(command: str) -> Path | None:
 
 def _registry_read() -> tuple[bool, str | None]:
     """
-    Read the Jarvis Run value.
+    Read the TITAN Run value.
 
     Returns:
         tuple[bool, str | None]: (registry available, stored command
@@ -178,7 +178,7 @@ def _registry_read() -> tuple[bool, str | None]:
 
 
 def _registry_write(command: str) -> None:
-    """Write (create or replace) the single Jarvis Run value."""
+    """Write (create or replace) the single TITAN Run value."""
     if winreg is None:
         raise OSError("the Windows registry is unavailable")
     with winreg.CreateKeyEx(
@@ -189,7 +189,7 @@ def _registry_write(command: str) -> None:
 
 def _registry_delete() -> bool:
     """
-    Delete the Jarvis Run value.
+    Delete the TITAN Run value.
 
     Returns:
         bool: True when a value was removed, False when there was
@@ -213,7 +213,7 @@ def _registry_delete() -> bool:
 
 def enable_startup() -> dict:
     """
-    Register this Jarvis installation to start when Windows starts.
+    Register this TITAN installation to start when Windows starts.
 
     Takes no arguments: the command comes from the validated
     installation location only. Writing the same value twice keeps
@@ -236,7 +236,7 @@ def enable_startup() -> dict:
         logger.warning("Startup registration refused: %s", exc)
         return _result(
             False,
-            "I couldn't verify this Jarvis installation, so startup "
+            "I couldn't verify this TITAN installation, so startup "
             "was not changed.",
             {},
         )
@@ -274,7 +274,7 @@ def disable_startup() -> dict:
     """
     Remove the Windows startup registration.
 
-    Only the Jarvis Run value is removed — user configuration, logs,
+    Only the TITAN Run value is removed — user configuration, logs,
     and every other startup entry are left untouched. Disabling when
     nothing is registered is a safe no-op.
 
@@ -308,7 +308,7 @@ def disable_startup() -> dict:
 
 def is_startup_enabled() -> bool:
     """
-    Report whether a Jarvis startup entry exists.
+    Report whether a TITAN startup entry exists.
 
     Returns:
         bool: True when the Run value is present (even if the program

@@ -18,7 +18,7 @@ from core.exceptions import (
     CommandError,
     ConfigurationError,
     FileOperationError,
-    JarvisError,
+    TITANError,
     SystemOperationError,
     ValidationError,
 )
@@ -34,43 +34,43 @@ ALL_SPECIALIZED = [
 ]
 
 
-class TestJarvisError(unittest.TestCase):
+class TestTITANError(unittest.TestCase):
     """The base exception."""
 
     def test_is_exception_subclass(self):
-        self.assertTrue(issubclass(JarvisError, Exception))
+        self.assertTrue(issubclass(TITANError, Exception))
 
     def test_raise_and_catch(self):
-        with self.assertRaises(JarvisError):
-            raise JarvisError("something failed")
+        with self.assertRaises(TITANError):
+            raise TITANError("something failed")
 
     def test_message_is_preserved(self):
         try:
-            raise JarvisError("something failed")
-        except JarvisError as e:
+            raise TITANError("something failed")
+        except TITANError as e:
             self.assertEqual(str(e), "something failed")
 
     def test_not_related_to_stdlib_errors(self):
-        self.assertFalse(issubclass(ValueError, JarvisError))
+        self.assertFalse(issubclass(ValueError, TITANError))
 
 
 class TestSpecializedExceptions(unittest.TestCase):
     """Each specialized exception integrates with the hierarchy."""
 
-    def test_all_subclass_jarvis_error(self):
+    def test_all_subclass_TITAN_error(self):
         for cls in ALL_SPECIALIZED:
             with self.subTest(cls=cls.__name__):
-                self.assertTrue(issubclass(cls, JarvisError))
+                self.assertTrue(issubclass(cls, TITANError))
 
     def test_all_subclass_exception(self):
         for cls in ALL_SPECIALIZED:
             with self.subTest(cls=cls.__name__):
                 self.assertTrue(issubclass(cls, Exception))
 
-    def test_catchable_as_jarvis_error(self):
+    def test_catchable_as_TITAN_error(self):
         for cls in ALL_SPECIALIZED:
             with self.subTest(cls=cls.__name__):
-                with self.assertRaises(JarvisError):
+                with self.assertRaises(TITANError):
                     raise cls("detail")
 
     def test_catchable_as_own_type(self):
@@ -78,9 +78,9 @@ class TestSpecializedExceptions(unittest.TestCase):
             raise ApplicationError("app detail")
 
     def test_inheritance_chain(self):
-        self.assertTrue(issubclass(ApplicationError, JarvisError))
-        self.assertTrue(issubclass(JarvisError, Exception))
-        self.assertIs(ApplicationError.__mro__[1], JarvisError)
+        self.assertTrue(issubclass(ApplicationError, TITANError))
+        self.assertTrue(issubclass(TITANError, Exception))
+        self.assertIs(ApplicationError.__mro__[1], TITANError)
 
 
 class TestConfigurationErrorUsage(unittest.TestCase):

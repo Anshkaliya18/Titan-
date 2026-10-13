@@ -1,4 +1,4 @@
-"""Send one isolated Gemini API diagnostic request; execute no Jarvis command."""
+"""Send one isolated Gemini API diagnostic request; execute no TITAN command."""
 
 from __future__ import annotations
 

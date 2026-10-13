@@ -16,8 +16,8 @@ Safety model for this file:
 - The unit tests replace the three registry leaves with an in-memory
   store — the real user's startup entry is never touched.
 - ONE integration test exercises the real registry, but under an
-  isolated, Jarvis-test-specific key that is removed again in a
-  finally block. It never writes the real "Jarvis" Run value, and the
+  isolated, TITAN-test-specific key that is removed again in a
+  finally block. It never writes the real "TITAN" Run value, and the
   command it stores is never executed.
 """
 
@@ -45,7 +45,7 @@ NEW_SOURCE_FILES = (
     ROOT / "core" / "cli.py",
     ROOT / "utils" / "paths.py",
     ROOT / "build.py",
-    ROOT / "jarvis.spec",
+    ROOT / "TITAN.spec",
 )
 NEW_SOURCE_FILES = tuple(p for p in NEW_SOURCE_FILES if p is not None)
 
@@ -265,7 +265,7 @@ class TestMalformedRegistryState(unittest.TestCase):
         self.assertIn("does not start", status["message"])
 
     def test_stale_entry_is_reported_not_repaired(self):
-        ghost = '"C:\\definitely\\gone\\jarvis-fake.exe"'
+        ghost = '"C:\\definitely\\gone\\TITAN-fake.exe"'
         with fake_registry({sm.VALUE_NAME: ghost}):
             status = sm.startup_status()
             # Status alone never repairs it.
@@ -327,15 +327,15 @@ class TestRealRegistryIsolatedKey(unittest.TestCase):
     """
     Integration: the REAL registry API, under a disposable test key.
 
-    Writes HKCU\\Software\\JarvisStep23Test_<pid> (never the real
-    Jarvis Run value) and removes it again in tearDown.
+    Writes HKCU\\Software\\TITANStep23Test_<pid> (never the real
+    TITAN Run value) and removes it again in tearDown.
     """
 
     def setUp(self):
         if sm.winreg is None:
             self.skipTest("winreg unavailable (non-Windows)")
-        self.test_key = rf"Software\JarvisStep23Test_{os.getpid()}"
-        self.test_name = "JarvisTestEntry"
+        self.test_key = rf"Software\TITANStep23Test_{os.getpid()}"
+        self.test_name = "TITANTestEntry"
         # Point every operation at the disposable key.
         patcher_key = patch.object(sm, "RUN_KEY", self.test_key)
         patcher_name = patch.object(sm, "VALUE_NAME", self.test_name)

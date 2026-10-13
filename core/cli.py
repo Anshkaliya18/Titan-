@@ -5,15 +5,15 @@ A deliberately tiny flag handler — no CLI framework.
 
 Handled before logging and the managers initialize (see main.py), so:
 
-    Jarvis.exe --version    print the version and exit
-    Jarvis.exe --help       print short usage and exit
+    TITAN.exe --version    print the version and exit
+    TITAN.exe --help       print short usage and exit
 
 Both print to stdout and return exit code 0 without starting the
 interactive loop, configuring logging, or touching the registry, the
 filesystem, or NLTK.
 
 This is unrelated to the conversational ``help`` command inside the
-Jarvis prompt, which keeps working exactly as before.
+TITAN prompt, which keeps working exactly as before.
 """
 
 from __future__ import annotations
@@ -24,13 +24,15 @@ from core.version import version_string
 
 USAGE = f"""{version_string()}
 
-Usage: Jarvis [options]
+Usage: TITAN [options]
 
 Options:
   --version   Print the version and exit
   --help, -h  Show this help and exit
+  --gui       Start the TITAN desktop interface
+  --cli       Start the command-line interface (default)
 
-Run Jarvis without options to start the interactive assistant.
+Run TITAN without options to start the command-line assistant.
 Once started, type "help" for command help.
 """
 

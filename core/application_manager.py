@@ -154,7 +154,7 @@ APP_NAMES: set[str] = set(ALIAS_TO_APP.keys())
 # Successful executable resolutions, keyed by canonical application
 # name (Step 22). Only *positive* results are cached: a failed
 # resolution is retried on the next command, so an application
-# installed while Jarvis is running is discovered automatically.
+# installed while TITAN is running is discovered automatically.
 # Values come only from the static allowlisted executable_paths or
 # from shutil.which() on the same allowlisted executable name — user
 # input never reaches this cache, and the allowlist lookup in

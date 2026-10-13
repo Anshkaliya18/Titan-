@@ -1,7 +1,7 @@
 """Bounded local dictation through the installed Windows SAPI recognizer.
 
 All COM and microphone work is lazy and happens only inside ``listen``. The
-provider returns text only; it has no access to Jarvis command execution.
+provider returns text only; it has no access to TITAN command execution.
 """
 
 from __future__ import annotations
@@ -152,7 +152,7 @@ class WindowsSpeechRecognizer:
             result = RecognitionResult(False, error=error)
         finally:
             # Stop dictation first, then close the SAPI input device. The COM
-            # references are released before returning to Jarvis or TTS.
+            # references are released before returning to TITAN or TTS.
             if grammar is not None:
                 try:
                     grammar.DictationSetState(_SPRS_INACTIVE)

@@ -37,7 +37,7 @@ class TestDefaults(unittest.TestCase):
         self.assertIn("safety", DEFAULT_CONFIG)
 
     def test_default_assistant_name(self):
-        self.assertEqual(DEFAULT_CONFIG["general"]["assistant_name"], "Jarvis")
+        self.assertEqual(DEFAULT_CONFIG["general"]["assistant_name"], "TITAN")
 
     def test_default_debug_false(self):
         self.assertFalse(DEFAULT_CONFIG["general"]["debug"])
@@ -48,7 +48,7 @@ class TestDefaults(unittest.TestCase):
         self.assertTrue(engine.startswith("https://"))
 
     def test_default_workspace(self):
-        self.assertEqual(DEFAULT_CONFIG["filesystem"]["workspace"], "jarvis_workspace")
+        self.assertEqual(DEFAULT_CONFIG["filesystem"]["workspace"], "TITAN_workspace")
 
     def test_safety_defaults_true(self):
         self.assertTrue(
@@ -73,12 +73,12 @@ class TestLoading(unittest.TestCase):
 
     def test_load_valid_config(self):
         path = self._write_temp_config({
-            "general": {"assistant_name": "JARVIS", "debug": True},
+            "general": {"assistant_name": "TITAN", "debug": True},
         })
         try:
             with patch.object(config_manager, "_settings_path", return_value=Path(path)):
                 config = reload_config()
-            self.assertEqual(get_value("general", "assistant_name"), "JARVIS")
+            self.assertEqual(get_value("general", "assistant_name"), "TITAN")
             self.assertTrue(get_value("general", "debug"))
             # Untouched sections keep defaults
             self.assertTrue(
@@ -178,7 +178,7 @@ class TestGetters(unittest.TestCase):
     """get_value / get_section / get_config."""
 
     def test_get_value(self):
-        self.assertEqual(get_value("general", "assistant_name"), "Jarvis")
+        self.assertEqual(get_value("general", "assistant_name"), "TITAN")
 
     def test_get_value_default(self):
         self.assertEqual(get_value("unknown", "unknown", "fallback"), "fallback")
@@ -230,11 +230,11 @@ class TestSetValue(unittest.TestCase):
         self.assertTrue(get_value("general", "debug"))
 
     def test_set_value_persists_to_disk(self):
-        set_value("general", "assistant_name", "JARVIS")
+        set_value("general", "assistant_name", "TITAN")
         # Read the temp file directly
         with open(self._tmp.name, encoding="utf-8") as f:
             saved = json.load(f)
-        self.assertEqual(saved["general"]["assistant_name"], "JARVIS")
+        self.assertEqual(saved["general"]["assistant_name"], "TITAN")
 
     def test_set_value_type_validation(self):
         with self.assertRaises(TypeError):
@@ -277,7 +277,7 @@ class TestIntegration(unittest.TestCase):
         from core.file_manager import _workspace_subdir
 
         name = _workspace_subdir()
-        self.assertEqual(name, "jarvis_workspace")
+        self.assertEqual(name, "TITAN_workspace")
         self.assertNotIn("/", name)
         self.assertNotIn("..", name)
 
@@ -285,7 +285,7 @@ class TestIntegration(unittest.TestCase):
         from core.file_manager import _workspace_subdir
 
         with patch.object(config_manager, "get_value", return_value="../../etc"):
-            self.assertEqual(_workspace_subdir(), "jarvis_workspace")
+            self.assertEqual(_workspace_subdir(), "TITAN_workspace")
 
     def test_system_manager_always_requires_confirmation(self):
         from core.system_manager import _confirmation_enabled
@@ -504,17 +504,17 @@ class TestEnvironmentLoading(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             env_file = Path(temp_dir) / ".env"
             env_file.write_text(
-                "JARVIS_DOTENV_TEST=from-file\n"
-                "JARVIS_DOTENV_PRECEDENCE=from-file\n",
+                "TITAN_DOTENV_TEST=from-file\n"
+                "TITAN_DOTENV_PRECEDENCE=from-file\n",
                 encoding="utf-8",
             )
             with patch.object(config_manager.paths, "data_root", return_value=Path(temp_dir)):
-                with patch.dict(os.environ, {"JARVIS_DOTENV_PRECEDENCE": "from-process"}, clear=False):
-                    os.environ.pop("JARVIS_DOTENV_TEST", None)
+                with patch.dict(os.environ, {"TITAN_DOTENV_PRECEDENCE": "from-process"}, clear=False):
+                    os.environ.pop("TITAN_DOTENV_TEST", None)
                     config_manager._load_environment()
-                    self.assertEqual(os.environ["JARVIS_DOTENV_TEST"], "from-file")
-                    self.assertEqual(os.environ["JARVIS_DOTENV_PRECEDENCE"], "from-process")
-                    os.environ.pop("JARVIS_DOTENV_TEST", None)
+                    self.assertEqual(os.environ["TITAN_DOTENV_TEST"], "from-file")
+                    self.assertEqual(os.environ["TITAN_DOTENV_PRECEDENCE"], "from-process")
+                    os.environ.pop("TITAN_DOTENV_TEST", None)
 
 
 if __name__ == "__main__":

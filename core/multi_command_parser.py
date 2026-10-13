@@ -1,13 +1,13 @@
 """
 Multi-Command Parser Module
 ----------------------------
-Splits a single user input into individual Jarvis command segments.
+Splits a single user input into individual TITAN command segments.
 
     single user input → list of command segments
 
 This module ONLY splits text. It does not execute anything, does not
 call any manager, and does not interpret commands beyond checking
-whether text after a separator looks like the start of a Jarvis
+whether text after a separator looks like the start of a TITAN
 command. Command-start knowledge is derived from the Command
 Registry — there is no second command list here.
 
@@ -17,7 +17,7 @@ Splitting is deterministic and command-aware:
      ↓
     candidate separator ("and" / "then" / "after that" / "next" / , / ;)
      ↓
-    does the text AFTER it look like the beginning of a Jarvis
+    does the text AFTER it look like the beginning of a TITAN
     command? (registry aliases, with typo tolerance)
      ↓
     YES → split there     NO → keep it inside the current command
@@ -77,7 +77,7 @@ _BOUNDARY_PUNCTUATION = ",;:"
 
 def _derive_command_start_words() -> frozenset[str]:
     """
-    Derive the set of words that can begin a Jarvis command.
+    Derive the set of words that can begin a TITAN command.
 
     Built from the FIRST word of every alias in the Command
     Registry (the single source of truth for commands), so adding a
@@ -184,7 +184,7 @@ def split_commands(text: str) -> list[str]:
 
 def _starts_command(text: str) -> bool:
     """
-    Decide whether text begins with a Jarvis command.
+    Decide whether text begins with a TITAN command.
 
     Leading separators are skipped ("then open calculator" starts a
     command), then the first meaningful word is checked against the
@@ -197,7 +197,7 @@ def _starts_command(text: str) -> bool:
         text: The text AFTER a candidate separator.
 
     Returns:
-        bool: True when the text looks like another Jarvis command.
+        bool: True when the text looks like another TITAN command.
     """
     words = text.split()
     index = 0

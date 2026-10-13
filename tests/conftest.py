@@ -2,7 +2,7 @@
 Pytest Configuration
 
 Redirects logging to a temporary directory before any test module is
-imported, so the real logs/jarvis.log is never written during tests.
+imported, so the real logs/TITAN.log is never written during tests.
 """
 
 import sys
@@ -17,7 +17,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from utils.logger import configure_logging  # noqa: E402
 
 # Session log directory — temporary, never the real project logs/
-TEST_LOG_DIR = Path(tempfile.mkdtemp(prefix="jarvis-test-logs-"))
+TEST_LOG_DIR = Path(tempfile.mkdtemp(prefix="TITAN-test-logs-"))
 configure_logging(log_dir=TEST_LOG_DIR)
 
 

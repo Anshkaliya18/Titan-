@@ -21,7 +21,7 @@ from core.file_manager import create_folder, delete_file, open_file, search_file
 from core.browser_manager import open_browser, open_url, search_web
 from core.command_history import get_command_history
 from core.command_validator import validate_command
-from core.exceptions import JarvisError
+from core.exceptions import TITANError
 from core.help_manager import get_command_list, get_help
 from utils.logger import get_logger
 
@@ -108,12 +108,12 @@ def execute_command(command: dict, confirmed: bool | None = None) -> dict:
         return result
 
     # Error boundary: a manager must never be able to crash the
-    # assistant. Expected Jarvis errors are logged without a traceback;
+    # assistant. Expected TITAN errors are logged without a traceback;
     # unexpected exceptions are logged with the full traceback and both
     # produce a safe, generic user-facing result.
     try:
         return handler(target, command.get("arguments", {}))
-    except JarvisError as e:
+    except TITANError as e:
         logger.error("Command failed: %s", e)
         return _result(False, "I couldn't complete that command.", {})
     except Exception:
@@ -258,10 +258,10 @@ def confirmation_prompt(command: dict) -> str:
         target = command.get("target")
         return f"Are you sure you want to delete '{target}'? [yes/no]: "
     if intent == "enable_startup":
-        return "Are you sure you want Jarvis to start with Windows? (yes/no): "
+        return "Are you sure you want TITAN to start with Windows? (yes/no): "
     if intent == "disable_startup":
         return (
-            "Are you sure you want to stop Jarvis from starting with "
+            "Are you sure you want to stop TITAN from starting with "
             "Windows? (yes/no): "
         )
     return "Are you sure? (yes/no): "

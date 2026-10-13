@@ -179,7 +179,7 @@ def test_missing_target():
 
 def test_unknown_intent():
     """Test parsing with unknown intent."""
-    result = parse_command(["hello", "jarvis"], Intent.UNKNOWN)
+    result = parse_command(["hello", "TITAN"], Intent.UNKNOWN)
     assert result["intent"] == "unknown"
     assert result["target"] is None
     assert result["arguments"] == {}

@@ -1,6 +1,6 @@
 # Packaged Build Validation (Step 23 — Phase 27)
 
-Repeatable checklist for validating a packaged `Jarvis.exe` build.
+Repeatable checklist for validating a packaged `TITAN.exe` build.
 Run every step and record the result. Do NOT mark a step passed if it
 was not actually executed.
 
@@ -18,11 +18,11 @@ further: they exercise the real interactive behavior.
 
 ## A. Startup
 
-- [ ] A1. `dist\Jarvis\Jarvis.exe --version` prints `Jarvis 0.1.0`
+- [ ] A1. `dist\TITAN\TITAN.exe --version` prints `TITAN 0.1.0`
        and exits (no interactive loop).
-- [ ] A2. `dist\Jarvis\Jarvis.exe --help` prints usage and exits.
-- [ ] A3. Launch `Jarvis.exe` from the project directory — the
-       `Jarvis >` prompt appears within a few seconds.
+- [ ] A2. `dist\TITAN\TITAN.exe --help` prints usage and exits.
+- [ ] A3. Launch `TITAN.exe` from the project directory — the
+       `TITAN >` prompt appears within a few seconds.
 - [ ] A4. Launch it from a different directory (e.g. `C:\` or the
        desktop) — startup still works; no "file not found" errors.
 - [ ] A5. Launch it via a double-click in Explorer — a console window
@@ -51,7 +51,7 @@ Run each at the prompt:
 
 ## C. Configuration
 
-- [ ] C1. After first launch, `%APPDATA%\Jarvis\config\settings.json`
+- [ ] C1. After first launch, `%APPDATA%\TITAN\config\settings.json`
        exists (packaged mode).
 - [ ] C2. Edit `general.debug` to `true`, relaunch — debug lines
        appear in the console; set it back to `false` afterwards.
@@ -60,12 +60,12 @@ Run each at the prompt:
 
 ## D. Logging
 
-- [ ] D1. After running commands, `%APPDATA%\Jarvis\logs\jarvis.log`
+- [ ] D1. After running commands, `%APPDATA%\TITAN\logs\TITAN.log`
        exists and contains the session start/stop records.
 - [ ] D2. The log contains no secrets (passwords typed as arguments
        are redacted — try `open file secret_password.txt` and check
        the log shows `[REDACTED]`).
-- [ ] D3. No log files were written inside `dist\Jarvis\_internal\`.
+- [ ] D3. No log files were written inside `dist\TITAN\_internal\`.
 
 ## E. NLTK resources (offline behavior)
 
@@ -77,15 +77,15 @@ Run each at the prompt:
 
 ## F. Working-directory independence
 
-- [ ] F1. From `C:\`, run the full path to `Jarvis.exe` — startup,
+- [ ] F1. From `C:\`, run the full path to `TITAN.exe` — startup,
        help, and history all work.
-- [ ] F2. Create a shortcut to `Jarvis.exe` on the desktop, launch
+- [ ] F2. Create a shortcut to `TITAN.exe` on the desktop, launch
        from it — works, and the console stays visible.
 
 ## G. Startup registration (optional feature)
 
 - [ ] G1. `enable startup` → confirm `yes` → `startup status` reports
-       enabled, and `regedit` shows the `Jarvis` value under
+       enabled, and `regedit` shows the `TITAN` value under
        `HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run`.
 - [ ] G2. `enable startup` again → still exactly one entry (no
        duplicates).

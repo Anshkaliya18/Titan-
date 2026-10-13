@@ -190,7 +190,7 @@ def test_bare_google_is_not_search():
 
 def test_unknown():
     """Test unknown intent."""
-    assert detect_intent(["hello", "jarvis"]) == Intent.UNKNOWN
+    assert detect_intent(["hello", "TITAN"]) == Intent.UNKNOWN
 
 
 def test_empty():

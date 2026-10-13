@@ -2,7 +2,7 @@
 Tests for the centralized logging system and error boundaries.
 
 Every test runs against a temporary log directory; the real project
-logs/jarvis.log is never written by this suite.
+logs/TITAN.log is never written by this suite.
 """
 
 import io
@@ -49,7 +49,7 @@ class _LoggingTestCase(unittest.TestCase):
             get_log_file().parent if is_configured() else None
         )
         reset_logging()
-        self.log_dir = Path(tempfile.mkdtemp(prefix="jarvis-logger-test-"))
+        self.log_dir = Path(tempfile.mkdtemp(prefix="TITAN-logger-test-"))
         configure_logging(log_dir=self.log_dir)
 
     def tearDown(self):
@@ -98,7 +98,7 @@ class TestLogFile(_LoggingTestCase):
     def test_default_log_location(self):
         self.assertEqual(DEFAULT_LOG_DIR.name, "logs")
         self.assertEqual(DEFAULT_LOG_DIR / LOG_FILENAME,
-                         DEFAULT_LOG_DIR / "jarvis.log")
+                         DEFAULT_LOG_DIR / "TITAN.log")
 
     def test_info_message_is_logged(self):
         test_logger = get_logger("test.info")
@@ -194,7 +194,7 @@ class TestRotation(_LoggingTestCase):
 
     def test_rotation_creates_backup_files(self):
         reset_logging()
-        small_dir = Path(tempfile.mkdtemp(prefix="jarvis-rotation-test-"))
+        small_dir = Path(tempfile.mkdtemp(prefix="TITAN-rotation-test-"))
         try:
             configure_logging(log_dir=small_dir, max_bytes=400,
                               backup_count=2)
@@ -254,7 +254,7 @@ class TestExecutorErrorBoundary(_LoggingTestCase):
         self.assertIn("Traceback (most recent call last)", content)
         self.assertIn("RuntimeError", content)
 
-    def test_jarvis_error_returns_safe_result(self):
+    def test_TITAN_error_returns_safe_result(self):
         from core.exceptions import ApplicationError
 
         with patch(

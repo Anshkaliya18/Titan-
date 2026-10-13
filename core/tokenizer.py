@@ -6,7 +6,7 @@ Uses NLTK's word_tokenize for now.
 
 Startup note (Step 22): the NLTK import is wrapped by
 utils.nltk_loader, which installs a small shim for NLTK's optional
-scientific dependencies (scipy/sklearn) that Jarvis never uses, so the
+scientific dependencies (scipy/sklearn) that TITAN never uses, so the
 import takes NLTK's own guarded "package not installed" branch. This
 cuts ~1.1 s from startup with byte-identical tokenization output (see
 utils/nltk_loader.py and the A/B test in tests/test_performance.py).

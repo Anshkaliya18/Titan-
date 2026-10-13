@@ -1,3 +1,3 @@
 """
-Jarvis configuration package.
+TITAN configuration package.
 """

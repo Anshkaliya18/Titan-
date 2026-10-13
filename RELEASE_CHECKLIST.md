@@ -1,6 +1,6 @@
-# Jarvis 1.0.0 — Release Checklist
+# TITAN 1.0.0 — Release Checklist
 
-Repeatable checklist for cutting a Jarvis release. Every box must be
+Repeatable checklist for cutting a TITAN release. Every box must be
 checked before the release is published.
 
 ## Code
@@ -20,7 +20,7 @@ checked before the release is published.
 
 ## Packaging
 - [ ] `python build.py` succeeds
-- [ ] `dist/Jarvis/Jarvis.exe` exists and launches
+- [ ] `dist/TITAN/TITAN.exe` exists and launches
 - [ ] Bundled resources present (config, spell model, NLTK data)
 - [ ] `--version` prints the correct version
 - [ ] Works from a different working directory

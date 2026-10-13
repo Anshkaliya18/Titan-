@@ -36,9 +36,9 @@ _VOICE_ERROR_MESSAGES = {
 
 
 def _assistant_name() -> str:
-    """Return the configured assistant name (defaults to 'Jarvis')."""
+    """Return the configured assistant name (defaults to 'TITAN')."""
     name = get_value("general", "assistant_name")
-    return name if isinstance(name, str) and name.strip() else "Jarvis"
+    return name if isinstance(name, str) and name.strip() else "TITAN"
 
 
 def get_input() -> str:
@@ -115,7 +115,7 @@ def _start_wake_mode() -> None:
         }
         print(messages.get(result.error, "Wake-word mode could not start."))
         return
-    phrase = get_value("wake_word", "phrase", "hey jarvis")
+    phrase = get_value("wake_word", "phrase", "hey TITAN")
     print("Wake-word mode: ON")
     print(f'Listening for: "{phrase}" (press Ctrl+C to stop)')
     logger.info("Wake-word mode enabled")

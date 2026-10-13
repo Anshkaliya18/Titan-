@@ -1,7 +1,7 @@
 """
 Configuration Manager Module
 
-Centralized configuration for Jarvis. Settings are loaded from
+Centralized configuration for TITAN. Settings are loaded from
 config/settings.json once and kept in memory; get_value() reads
 from the loaded configuration, never from disk on every call.
 
@@ -32,14 +32,14 @@ logger = get_logger(__name__)
 # Built-in safe defaults — used when settings.json is missing or invalid.
 DEFAULT_CONFIG: dict[str, dict[str, Any]] = {
     "general": {
-        "assistant_name": "Jarvis",
+        "assistant_name": "TITAN",
         "debug": False,
     },
     "browser": {
         "default_search_engine": "https://www.google.com/search?q={query}",
     },
     "filesystem": {
-        "workspace": "jarvis_workspace",
+        "workspace": "TITAN_workspace",
     },
     "safety": {
         "require_confirmation_for_shutdown": True,
@@ -99,7 +99,7 @@ DEFAULT_CONFIG: dict[str, dict[str, Any]] = {
     "wake_word": {
         "enabled": False,
         "provider": "local",
-        "phrase": "hey jarvis",
+        "phrase": "hey TITAN",
         "sensitivity": 0.5,
         "sample_rate": 16000,
         "channels": 1,
@@ -249,8 +249,8 @@ def _settings_path() -> Path:
 
     The location comes from utils.paths (Step 23): the project's
     config/settings.json in source mode, the writable per-user
-    %APPDATA%\\Jarvis\\config\\settings.json when packaged (or the
-    folder named by JARVIS_DATA_DIR when that is set). It is always an
+    %APPDATA%\\TITAN\\config\\settings.json when packaged (or the
+    folder named by TITAN_DATA_DIR when that is set). It is always an
     absolute path computed from the installation layout — never from
     the working directory and never from user input — so configuration
     path traversal is impossible.
@@ -308,13 +308,13 @@ def _validate_and_fix(config: dict) -> dict:
     raw_wake = config["wake_word"]
     wake_invalid = not isinstance(raw_wake, dict)
     if isinstance(raw_wake, dict):
-        phrase = raw_wake.get("phrase", "hey jarvis")
+        phrase = raw_wake.get("phrase", "hey TITAN")
         sensitivity = raw_wake.get("sensitivity", 0.5)
         wake_invalid = (
             not isinstance(raw_wake.get("enabled", False), bool)
             or raw_wake.get("provider", "local") != "local"
             or not isinstance(phrase, str)
-            or " ".join(phrase.casefold().split()) != "hey jarvis"
+            or " ".join(phrase.casefold().split()) != "hey TITAN"
             or not isinstance(sensitivity, float)
             or isinstance(sensitivity, bool)
             or not 0.1 <= sensitivity <= 0.95
@@ -753,9 +753,9 @@ def set_value(section: str, key: str, value: Any) -> None:
             raise ValueError("wake_word.provider only supports 'local'")
         if key == "phrase" and (
             not isinstance(value, str)
-            or " ".join(value.casefold().split()) != "hey jarvis"
+            or " ".join(value.casefold().split()) != "hey TITAN"
         ):
-            raise ValueError("The installed wake model only supports 'hey jarvis'")
+            raise ValueError("The installed wake model only supports 'hey TITAN'")
         if key == "sensitivity" and (
             isinstance(value, bool)
             or not isinstance(value, (int, float))

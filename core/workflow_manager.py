@@ -1,4 +1,4 @@
-"""Bounded persistent storage for validated Jarvis command workflows.
+"""Bounded persistent storage for validated TITAN command workflows.
 
 This module manages data only. It never invokes the Executor, managers, a
 shell, or Python code. Every stored workflow is treated as untrusted and is

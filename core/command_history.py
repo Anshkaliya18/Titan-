@@ -1,7 +1,7 @@
 """
 Command History Module
 ----------------------
-Bounded, in-memory, session-only record of the commands Jarvis has
+Bounded, in-memory, session-only record of the commands TITAN has
 processed (Step 20).
 
 Architecture:
@@ -13,7 +13,7 @@ Architecture:
 
 Key rules:
 - Memory only: nothing here is ever written to disk. History
-  disappears when Jarvis exits (no history.json, no database).
+  disappears when TITAN exits (no history.json, no database).
 - Bounded: the oldest entry is dropped once the limit is reached;
   sequential IDs are never renumbered, so references stay stable
   for the lifetime of the session.
@@ -185,7 +185,7 @@ def _validated_limit(value) -> int | None:
 
 class CommandHistory:
     """
-    Bounded, in-memory command history for one Jarvis session.
+    Bounded, in-memory command history for one TITAN session.
 
     The internal list is only reachable through explicit methods;
     getters return copies of a list of frozen entries, so callers

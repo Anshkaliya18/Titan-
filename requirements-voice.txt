@@ -1,4 +1,4 @@
-# Optional microphone input for local wake-word frames. Typed Jarvis use does
+# Optional microphone input for local wake-word frames. Typed TITAN use does
 # not require these packages; Windows SAPI transcription has no model download.
 SpeechRecognition[audio]>=3.10
 

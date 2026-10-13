@@ -51,7 +51,7 @@ def _success_recorder(executed):
         )
         intent = command.get("intent")
         if intent == "help":
-            message = "Jarvis can help you."
+            message = "TITAN can help you."
         elif intent == "list_commands":
             message = "Available commands listed."
         elif intent == "shutdown_computer":
@@ -761,7 +761,7 @@ class TestMainMultiConfirmationFlow(unittest.TestCase):
         self._run_turn("open chrome and shutdown computer")
         executed_before = len(self.executed)
         output = self._run_turn("help")
-        self.assertIn("Jarvis can help you.", output)
+        self.assertIn("TITAN can help you.", output)
         status, _ = self._pending()
         self.assertEqual(status, "none")
         # Help ran; the shutdown never did.

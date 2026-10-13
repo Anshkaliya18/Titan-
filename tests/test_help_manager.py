@@ -372,7 +372,7 @@ class TestFullPipeline(unittest.TestCase):
 
     def test_help_pipeline(self):
         response = self._run("help")
-        self.assertIn("Jarvis can help you with", response)
+        self.assertIn("TITAN can help you with", response)
 
     def test_commands_pipeline(self):
         response = self._run("commands")
@@ -380,11 +380,11 @@ class TestFullPipeline(unittest.TestCase):
 
     def test_what_can_you_do_pipeline(self):
         response = self._run("what can you do")
-        self.assertIn("Jarvis can help you with", response)
+        self.assertIn("TITAN can help you with", response)
 
     def test_how_can_you_help_pipeline(self):
         response = self._run("how can you help")
-        self.assertIn("Jarvis can help you with", response)
+        self.assertIn("TITAN can help you with", response)
 
     def test_help_does_not_launch(self):
         with patch("core.executor.open_browser") as mock_browser, \

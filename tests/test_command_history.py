@@ -67,7 +67,7 @@ def _fake_exec(executed, fail_targets=()):
             "command": dict(command),
         })
         if intent == "help":
-            message, success = "Jarvis can help you.", True
+            message, success = "TITAN can help you.", True
         elif intent == "list_commands":
             message, success = "Available commands listed.", True
         elif intent == "shutdown_computer":

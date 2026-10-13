@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to Jarvis are documented in this file.
+All notable changes to TITAN are documented in this file.
 
 ## Unreleased — Windows application discovery
 
@@ -12,7 +12,7 @@ All notable changes to Jarvis are documented in this file.
 ## Unreleased — Step 35 automation and workflows
 
 - Added opt-in, persistent workflows that contain only locally validated
-  commands registered by Jarvis. Workflow storage uses bounded, atomic JSON
+  commands registered by TITAN. Workflow storage uses bounded, atomic JSON
   writes and rejects malformed or tampered records when read.
 - Added explicit create, list, inspect, run, enable, disable, and delete CLI
   requests. Workflow runs are rebuilt as fresh TaskPlans and use the existing
@@ -25,7 +25,7 @@ All notable changes to Jarvis are documented in this file.
 
 ## Unreleased — Step 34 task planning
 
-- Added opt-in, bounded task plans containing only commands registered by Jarvis.
+- Added opt-in, bounded task plans containing only commands registered by TITAN.
 - Plans use the existing normalization, natural-language interpretation,
   context, command validation, sequential executor, history, and confirmation
   layers. A plan stops on failure or at a dangerous command; confirmation runs
@@ -70,7 +70,7 @@ All notable changes to Jarvis are documented in this file.
   and stable `gemini-3.5-flash-lite` as the configurable Flash-Lite default.
 - Added safe authentication, timeout, network, invalid-request, service, and
   rate-limit categorization. Quota errors do not trigger automatic retries;
-  Jarvis falls back to its deterministic command pipeline.
+  TITAN falls back to its deterministic command pipeline.
 - Preserved deterministic-first dispatch, registry-derived structured JSON,
   local schema/target checks, validator enforcement, and dangerous-command
   confirmation. Added an isolated manual API diagnostic with no command access.
@@ -83,7 +83,7 @@ All notable changes to Jarvis are documented in this file.
   registry, validator, and confirmation checks.
 - Replaced online voice transcription with one-shot local Whisper.cpp CLI
   transcription. Microphone audio is written to a temporary WAV and removed
-  after the process; no audio is uploaded or added to Jarvis history.
+  after the process; no audio is uploaded or added to TITAN history.
 - Added configurable executable/model paths, language, timeout handling, and
   safe missing executable/model errors. Voice and LLM remain disabled by
   default; typed commands work without either provider.
@@ -175,11 +175,25 @@ Initial stable Windows CLI release.
 - Working-directory independence
 
 ### Windows startup (optional)
-- Enable/disable starting Jarvis with Windows
+- Enable/disable starting TITAN with Windows
 - User-level HKCU Run key registration
 - Confirmation-gated, reversible, no administrator rights
 
 ### Packaging
-- PyInstaller onedir build (Jarvis.exe)
+- PyInstaller onedir build (TITAN.exe)
 - Bundled NLTK tokenizer data (offline, no downloads)
 - Portable distribution — copy the folder, run the executable
+
+# Step 36 — TITAN Desktop GUI
+
+- Added an optional dark Tkinter command center with conversation display,
+  keyboard shortcuts, voice input, TTS/wake controls, settings, and optional
+  Windows system tray integration.
+- GUI text and accepted voice transcripts use the existing single-turn core
+  pipeline, including command validation, pending confirmation, execution,
+  response formatting, and local TTS.
+- Added `python main.py --gui`; the existing CLI remains the default and is
+  available explicitly with `--cli`.
+- Branded the new desktop interface as TITAN while retaining legacy CLI
+  configuration and data-directory identifiers for compatibility.
+- Added optional tray dependencies in `requirements-gui.txt`.
